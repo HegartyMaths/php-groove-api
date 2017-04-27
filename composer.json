@@ -1,0 +1,29 @@
+{
+  "name": "hegartymaths/groove-api",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Dan Keeble",
+      "email": "dan@hegartymaths.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Groove\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "tightenco/collect": "^5.4"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
