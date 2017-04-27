@@ -1,6 +1,7 @@
 {
   "name": "hegartymaths/groove-api",
   "type": "library",
+  "license": "MIT",
   "authors": [
     {
       "name": "Dan Keeble",
