@@ -15,20 +15,24 @@ class Client
     private $accessToken;
 
     /**
+     * @var null
+     */
+    private $httpClient;
+
+    /**
      * Groove client.
      *
      * @param string $accessToken
+     * @param null $httpClient
      */
-    public function __construct($accessToken)
+    public function __construct($accessToken, $httpClient = null)
     {
         $this->accessToken = $accessToken;
+        $this->httpClient = $httpClient;
 
-        $this->http = new HttpClient([
-            'base_uri' => 'https://api.groovehq.com/v1/',
-            'headers' => [
-                'Authorization' => "Bearer $accessToken",
-            ],
-        ]);
+        if (is_null($httpClient)) {
+            $this->setupHttpClient($accessToken);
+        }
     }
 
     /**
@@ -39,7 +43,7 @@ class Client
      */
     public function get($endpoint)
     {
-        $request = $this->http->get($endpoint);
+        $request = $this->httpClient->get($endpoint);
 
         return json_decode($request->getBody());
     }
@@ -51,9 +55,9 @@ class Client
      * @param  array $params
      * @return mixed
      */
-    public function post($endpoint, $params)
+    public function post($endpoint, $params = [])
     {
-        $request = $this->http->post($endpoint, ['form_params' => $params]);
+        $request = $this->httpClient->post($endpoint, ['form_params' => $params]);
 
         return json_decode($request->getBody());
     }
@@ -106,5 +110,21 @@ class Client
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
+    }
+
+    /**
+     * Set up the HTTP client.
+     *
+     * @param  $accessToken
+     * @return void
+     */
+    private function setupHttpClient($accessToken)
+    {
+        $this->httpClient = new HttpClient([
+            'base_uri' => 'https://api.groovehq.com/v1/',
+            'headers' => [
+                'Authorization' => "Bearer $accessToken",
+            ],
+        ]);
     }
 }
