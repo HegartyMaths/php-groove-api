@@ -26,4 +26,9 @@ abstract class Model implements Jsonable
     {
         return json_encode($this->details);
     }
+
+    public function __get($key)
+    {
+        return $this->details->$key;
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace Groove\Models;
 
-use Groove\Api\Customer;
 use Groove\Model;
+use Groove\Api\Customer;
 
 class Ticket extends Model
 {

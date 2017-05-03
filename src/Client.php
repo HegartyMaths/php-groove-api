@@ -15,13 +15,20 @@ class Client
     private $accessToken;
 
     /**
+     * @var null
+     */
+    private $httpClient;
+
+    /**
      * Groove client.
      *
      * @param string $accessToken
+     * @param null $httpClient
      */
-    public function __construct($accessToken)
+    public function __construct($accessToken, $httpClient = null)
     {
         $this->accessToken = $accessToken;
+        $this->httpClient = $httpClient;
 
         $this->http = new HttpClient([
             'base_uri' => 'https://api.groovehq.com/v1/',

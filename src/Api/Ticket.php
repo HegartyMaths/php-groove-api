@@ -61,7 +61,7 @@ class Ticket extends Api
      */
     public function ticketState($ticketNumber)
     {
-        return json_encode($this->client->get("tickets/$ticketNumber/state"));
+        return $this->client->get("tickets/$ticketNumber/state");
     }
 
     /**
@@ -72,7 +72,7 @@ class Ticket extends Api
      */
     public function ticketAssignee($ticketNumber)
     {
-        return json_encode($this->client->get("tickets/$ticketNumber/assignee"));
+        return $this->client->get("tickets/$ticketNumber/assignee");
     }
 
     /**
@@ -82,6 +82,6 @@ class Ticket extends Api
      */
     public function count()
     {
-        return json_encode($this->client->get('tickets/count'));
+        return $this->client->get('tickets/count');
     }
 }
