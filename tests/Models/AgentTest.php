@@ -20,7 +20,7 @@ class AgentTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_an_agents_groups()
+    public function it_can_find_an_agents_groups()
     {
         $client = Mockery::spy(Client::class);
         $agent = new Agent($this->agent, $client);
@@ -32,7 +32,7 @@ class AgentTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_an_agents_tickets()
+    public function it_can_find_an_agents_tickets()
     {
         $client = Mockery::spy(Client::class);
         $agent = new Agent($this->agent, $client);

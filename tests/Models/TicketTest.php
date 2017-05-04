@@ -21,7 +21,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_tickets_messages()
+    public function it_can_find_a_tickets_messages()
     {
         $client = Mockery::spy(Client::class);
         $agent = new Ticket($this->agent, $client);
@@ -33,7 +33,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_tickets_customer()
+    public function it_can_find_a_tickets_customer()
     {
         $client = Mockery::mock(Client::class);
         $client->shouldReceive('get')->once()->andReturn(json_decode('{"customer": {}}'));

@@ -10,7 +10,7 @@ use Groove\Models\Mailbox as MailboxModel;
 class MailboxTest extends TestCase
 {
     /** @test */
-    function it_can_list_mailboxes()
+    public function it_can_list_mailboxes()
     {
         $client = $this->getMockClient();
         $client

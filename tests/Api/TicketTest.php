@@ -15,13 +15,13 @@ class TicketTest extends TestCase
     const TICKET_NUMBER = 123456;
 
     /** @test */
-    function it_can_create_a_ticket()
+    public function it_can_create_a_ticket()
     {
         $client = $this->getMockClient();
         $client
             ->shouldReceive('post')
             ->once()
-            ->andReturn(json_decode('{"ticket": {"body": "' . self::TICKET_BODY . '"}}'));
+            ->andReturn(json_decode('{"ticket": {"body": "'.self::TICKET_BODY.'"}}'));
 
         $ticket = (new Ticket($client))->create(self::TICKET_BODY, self::TICKET_FROM, self::TICKET_TO);
 
@@ -30,7 +30,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_list_of_tickets()
+    public function it_can_find_a_list_of_tickets()
     {
         $client = $this->getMockClient();
         $client
@@ -45,13 +45,13 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_ticket()
+    public function it_can_find_a_ticket()
     {
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
             ->once()
-            ->andReturn(json_decode('{"ticket": {"number": "' . self::TICKET_NUMBER . '"}}'));
+            ->andReturn(json_decode('{"ticket": {"number": "'.self::TICKET_NUMBER.'"}}'));
 
         $ticket = (new Ticket($client))->find(self::TICKET_NUMBER);
 
@@ -60,7 +60,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_tickets_state()
+    public function it_can_find_a_tickets_state()
     {
         $client = $this->getMockClient();
         $client
@@ -74,7 +74,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_tickets_assignee()
+    public function it_can_find_a_tickets_assignee()
     {
         $client = $this->getMockClient();
         $client
@@ -88,7 +88,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_a_tickets_count()
+    public function it_can_find_a_tickets_count()
     {
         $client = $this->getMockClient();
         $client
