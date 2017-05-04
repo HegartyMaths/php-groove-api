@@ -16,7 +16,7 @@ class Client
     private $accessToken;
 
     /**
-     * @var null
+     * @var
      */
     private $httpClient;
 
@@ -24,7 +24,7 @@ class Client
      * Groove client.
      *
      * @param string $accessToken
-     * @param null $httpClient
+     * @param $httpClient
      */
     public function __construct($accessToken, $httpClient = null)
     {
