@@ -1,9 +1,11 @@
 language: php
 
 php:
-  - '7.0'
+  - 5.6
+  - 7.0
+  - 7.1
 
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
-script: vendor/phpunit/phpunit/phpunit tests
+script: vendor/bin/phpunit
