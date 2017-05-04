@@ -6,5 +6,5 @@ use Groove\Model;
 
 class Mailbox extends Model
 {
-
+    //
 }

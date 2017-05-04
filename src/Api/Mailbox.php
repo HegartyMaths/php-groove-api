@@ -14,7 +14,7 @@ class Mailbox extends Api
      */
     public function list()
     {
-        $response = $this->client->get("mailboxes");
+        $response = $this->client->get('mailboxes');
 
         return collect($response->mailboxes)->transform(function ($ticket) {
             return new Model($ticket, $this->client);
