@@ -2,20 +2,19 @@
 
 namespace Tests;
 
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use Mockery;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Ticket;
 use Groove\Api\Customer;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Handler\MockHandler;
 
 class ClientTest extends TestCase
 {
     /** @test */
-    function it_provides_access_to_agents()
+    public function it_provides_access_to_agents()
     {
         $agents = (new Client('token'))->agents();
 
@@ -23,7 +22,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_provides_access_to_tickets()
+    public function it_provides_access_to_tickets()
     {
         $tickets = (new Client('token'))->tickets();
 
@@ -31,7 +30,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_provides_access_to_customers()
+    public function it_provides_access_to_customers()
     {
         $customers = (new Client('token'))->customers();
 
@@ -39,7 +38,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_can_get_the_access_token()
+    public function it_can_get_the_access_token()
     {
         $accessToken = (new Client('anAccessToken'))->getAccessToken();
 
@@ -47,7 +46,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_can_set_the_access_token()
+    public function it_can_set_the_access_token()
     {
         $client = new Client('originalAccessToken');
 
@@ -57,7 +56,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_can_make_get_requests()
+    public function it_can_make_get_requests()
     {
         $mock = new MockHandler([new Response(200, [], '"a test get response"')]);
         $handler = HandlerStack::create($mock);
@@ -69,7 +68,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_can_make_post_requests()
+    public function it_can_make_post_requests()
     {
         $mock = new MockHandler([new Response(200, [], '"a test post response"')]);
         $handler = HandlerStack::create($mock);
