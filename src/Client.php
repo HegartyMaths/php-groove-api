@@ -3,8 +3,8 @@
 namespace Groove;
 
 use Groove\Api\Agent;
-use Groove\Api\Mailbox;
 use Groove\Api\Ticket;
+use Groove\Api\Mailbox;
 use Groove\Api\Customer;
 use GuzzleHttp\Client as HttpClient;
 
