@@ -5,6 +5,7 @@ namespace Tests;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Ticket;
+use Groove\Api\Mailbox;
 use Groove\Api\Customer;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
@@ -35,6 +36,14 @@ class ClientTest extends TestCase
         $customers = (new Client('token'))->customers();
 
         $this->assertInstanceOf(Customer::class, $customers);
+    }
+
+    /** @test */
+    public function it_provides_access_to_mailboxes()
+    {
+        $customers = (new Client('token'))->mailboxes();
+
+        $this->assertInstanceOf(Mailbox::class, $customers);
     }
 
     /** @test */

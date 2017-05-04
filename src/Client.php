@@ -3,6 +3,7 @@
 namespace Groove;
 
 use Groove\Api\Agent;
+use Groove\Api\Mailbox;
 use Groove\Api\Ticket;
 use Groove\Api\Customer;
 use GuzzleHttp\Client as HttpClient;
@@ -90,6 +91,16 @@ class Client
     public function customers()
     {
         return new Customer($this);
+    }
+
+    /**
+     * Groove mailboxes.
+     *
+     * @return Mailbox
+     */
+    public function mailboxes()
+    {
+        return new Mailbox($this);
     }
 
     /**
