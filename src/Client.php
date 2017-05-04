@@ -126,7 +126,7 @@ class Client
     /**
      * Set up the HTTP client.
      *
-     * @param  $accessToken
+     * @param  string $accessToken
      * @return void
      */
     private function setupHttpClient($accessToken)
