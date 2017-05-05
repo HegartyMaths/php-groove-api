@@ -10,7 +10,7 @@ use Groove\Models\Attachment as AttachmentModel;
 class AttachmentTest extends TestCase
 {
     /** @test */
-    function it_can_list_attachments()
+    public function it_can_list_attachments()
     {
         $client = $this->getMockClient();
         $client

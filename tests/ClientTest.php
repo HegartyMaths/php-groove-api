@@ -48,7 +48,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    function it_provides_access_to_attachments()
+    public function it_provides_access_to_attachments()
     {
         $attachments = (new Client('token'))->attachments();
 
