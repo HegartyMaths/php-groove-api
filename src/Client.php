@@ -15,6 +15,11 @@ class Client
     /**
      * @var string
      */
+    const VERSION = 'v0.2.0';
+
+    /**
+     * @var string
+     */
     private $accessToken;
 
     /**
