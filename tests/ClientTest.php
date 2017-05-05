@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use Groove\Api\Group;
 use Groove\Client;
 use Groove\Api\Agent;
+use Groove\Api\Group;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
 use Groove\Api\Customer;

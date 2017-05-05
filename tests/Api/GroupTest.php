@@ -2,10 +2,10 @@
 
 namespace Tests\Api;
 
-use Groove\Api\Group;
-use Groove\Models\Group as GroupModel;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
+use Groove\Api\Group;
+use Illuminate\Support\Collection;
+use Groove\Models\Group as GroupModel;
 
 class GroupTest extends TestCase
 {
