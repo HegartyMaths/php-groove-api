@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Groove\Api\Group;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Ticket;
@@ -53,6 +54,14 @@ class ClientTest extends TestCase
         $attachments = (new Client('token'))->attachments();
 
         $this->assertInstanceOf(Attachment::class, $attachments);
+    }
+
+    /** @test */
+    public function it_provides_access_to_groups()
+    {
+        $groups = (new Client('token'))->groups();
+
+        $this->assertInstanceOf(Group::class, $groups);
     }
 
     /** @test */

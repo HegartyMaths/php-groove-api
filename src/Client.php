@@ -3,6 +3,7 @@
 namespace Groove;
 
 use Groove\Api\Agent;
+use Groove\Api\Group;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
 use Groove\Api\Customer;
@@ -112,6 +113,16 @@ class Client
     public function attachments()
     {
         return new Attachment($this);
+    }
+
+    /**
+     * Groove groups.
+     *
+     * @return Group
+     */
+    public function groups()
+    {
+        return new Group($this);
     }
 
     /**
