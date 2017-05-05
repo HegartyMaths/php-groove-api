@@ -3,8 +3,11 @@
 namespace Groove;
 
 use Groove\Api\Agent;
+use Groove\Api\Group;
 use Groove\Api\Ticket;
+use Groove\Api\Mailbox;
 use Groove\Api\Customer;
+use Groove\Api\Attachment;
 use GuzzleHttp\Client as HttpClient;
 
 class Client
@@ -12,10 +15,15 @@ class Client
     /**
      * @var string
      */
+    const VERSION = 'v0.2.0';
+
+    /**
+     * @var string
+     */
     private $accessToken;
 
     /**
-     * @var null
+     * @var
      */
     private $httpClient;
 
@@ -23,7 +31,7 @@ class Client
      * Groove client.
      *
      * @param string $accessToken
-     * @param null $httpClient
+     * @param $httpClient
      */
     public function __construct($accessToken, $httpClient = null)
     {
@@ -93,6 +101,36 @@ class Client
     }
 
     /**
+     * Groove mailboxes.
+     *
+     * @return Mailbox
+     */
+    public function mailboxes()
+    {
+        return new Mailbox($this);
+    }
+
+    /**
+     * Groove attachments.
+     *
+     * @return Attachment
+     */
+    public function attachments()
+    {
+        return new Attachment($this);
+    }
+
+    /**
+     * Groove groups.
+     *
+     * @return Group
+     */
+    public function groups()
+    {
+        return new Group($this);
+    }
+
+    /**
      * Get access token.
      *
      * @return string
@@ -115,7 +153,7 @@ class Client
     /**
      * Set up the HTTP client.
      *
-     * @param  $accessToken
+     * @param  string $accessToken
      * @return void
      */
     private function setupHttpClient($accessToken)
