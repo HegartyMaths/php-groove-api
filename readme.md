@@ -9,6 +9,10 @@ A simple wrapper for the Groove API in PHP.
 * [Groove API](https://www.groovehq.com/docs)
 * [HegartyMaths](https://hegartymaths.com)
 
+## Requirements
+
+ - PHP >= 7.0.0
+
 ## Installation
 
 Install via [Composer](http://getcomposer.org).
@@ -19,10 +23,12 @@ $ composer require hegartymaths/groove-api
 
 ## Basic usage
 
+Visit the API Settings page (/groove_client/settings/api) via your company subdomain to find your private token.
+
 ```php
 use Groove\Client;
 
-$client = new Client('access-token');
+$client = new Client('private-token');
 
 $tickets = $client->tickets()->list();
 ```
