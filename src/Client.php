@@ -6,6 +6,7 @@ use Groove\Api\Agent;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
 use Groove\Api\Customer;
+use Groove\Api\Attachment;
 use GuzzleHttp\Client as HttpClient;
 
 class Client
@@ -101,6 +102,16 @@ class Client
     public function mailboxes()
     {
         return new Mailbox($this);
+    }
+
+    /**
+     * Groove attachments.
+     *
+     * @return Attachment
+     */
+    public function attachments()
+    {
+        return new Attachment($this);
     }
 
     /**

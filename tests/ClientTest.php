@@ -7,6 +7,7 @@ use Groove\Api\Agent;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
 use Groove\Api\Customer;
+use Groove\Api\Attachment;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as Guzzle;
@@ -44,6 +45,14 @@ class ClientTest extends TestCase
         $customers = (new Client('token'))->mailboxes();
 
         $this->assertInstanceOf(Mailbox::class, $customers);
+    }
+
+    /** @test */
+    function it_provides_access_to_attachments()
+    {
+        $attachments = (new Client('token'))->attachments();
+
+        $this->assertInstanceOf(Attachment::class, $attachments);
     }
 
     /** @test */
