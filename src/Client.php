@@ -71,6 +71,20 @@ class Client
     }
 
     /**
+     * Put request.
+     *
+     * @param  string $endpoint
+     * @param  array $params
+     * @return mixed
+     */
+    public function put($endpoint, $params = [])
+    {
+        $request = $this->httpClient->put($endpoint, ['form_params' => $params]);
+
+        return json_decode($request->getBody());
+    }
+
+    /**
      * Groove agents.
      *
      * @return Agent

@@ -40,4 +40,19 @@ class CustomerTest extends TestCase
         $this->assertInstanceOf(CustomerModel::class, $customer);
         $this->assertEquals(self::CUSTOMER_EMAIL, $customer->email);
     }
+
+    /** @test */
+    public function it_can_update_a_customer()
+    {
+        $client = $this->getMockClient();
+        $client
+            ->shouldReceive('put')
+            ->once()
+            ->andReturn(json_decode('{"customer": {"email": "updated@email.com"}}'));
+
+        $customer = (new Customer($client))->update(self::CUSTOMER_EMAIL);
+
+        $this->assertInstanceOf(CustomerModel::class, $customer);
+        $this->assertEquals('updated@email.com', $customer->email);
+    }
 }

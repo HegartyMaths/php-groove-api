@@ -105,4 +105,16 @@ class ClientTest extends TestCase
 
         $this->assertEquals('a test post response', $response);
     }
+
+    /** @test */
+    public function it_can_make_put_requests()
+    {
+        $mock = new MockHandler([new Response(200, [], '"a test put response"')]);
+        $handler = HandlerStack::create($mock);
+        $httpClient = new Guzzle(['handler' => $handler]);
+
+        $response = (new Client('token', $httpClient))->put('endpoint');
+
+        $this->assertEquals('a test put response', $response);
+    }
 }
