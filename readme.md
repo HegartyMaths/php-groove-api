@@ -1,7 +1,7 @@
 PHP Groove API client
 =====================
 
-[![Build Status](https://img.shields.io/travis/HegartyMaths/groove-api.svg?branch=master&style=flat-square)](https://travis-ci.org/HegartyMaths/groove-api) 
+[![Build Status](https://img.shields.io/travis/HegartyMaths/php-groove-api.svg?branch=master&style=flat-square)](https://travis-ci.org/HegartyMaths/groove-api) 
 
 A simple wrapper for the Groove API in PHP.
 
