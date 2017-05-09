@@ -15,7 +15,7 @@ class Client
     /**
      * @var string
      */
-    const VERSION = 'v0.2.0';
+    const VERSION = 'v0.3.0';
 
     /**
      * @var string
@@ -66,6 +66,20 @@ class Client
     public function post($endpoint, $params = [])
     {
         $request = $this->httpClient->post($endpoint, ['form_params' => $params]);
+
+        return json_decode($request->getBody());
+    }
+
+    /**
+     * Put request.
+     *
+     * @param  string $endpoint
+     * @param  array $params
+     * @return mixed
+     */
+    public function put($endpoint, $params = [])
+    {
+        $request = $this->httpClient->put($endpoint, ['form_params' => $params]);
 
         return json_decode($request->getBody());
     }

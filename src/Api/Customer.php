@@ -33,4 +33,18 @@ class Customer extends Api
 
         return new Model($response->customer, $this->client);
     }
+
+    /**
+     * Update a customer.
+     *
+     * @param  $email
+     * @param  array $params
+     * @return Model
+     */
+    public function update($email, $params = [])
+    {
+        $response = $this->client->put("customers/$email", $params);
+
+        return new Model($response->customer, $this->client);
+    }
 }
