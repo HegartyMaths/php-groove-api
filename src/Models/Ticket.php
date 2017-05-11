@@ -8,28 +8,6 @@ use Groove\Api\Customer;
 class Ticket extends Model
 {
     /**
-     * @var
-     */
-    protected $details;
-
-    /**
-     * @var \Groove\Client
-     */
-    protected $client;
-
-    /**
-     * Ticket.
-     *
-     * @param $details
-     * @param \Groove\Client $client
-     */
-    public function __construct($details, $client)
-    {
-        $this->details = $details;
-        $this->client = $client;
-    }
-
-    /**
      * Ticket messages.
      *
      * @return \Illuminate\Support\Collection

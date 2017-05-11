@@ -3,6 +3,7 @@
 namespace Groove\Api;
 
 use Groove\Api;
+use Groove\Models\Webhook as Model;
 
 class Webhook extends Api
 {
@@ -11,12 +12,12 @@ class Webhook extends Api
      *
      * @param  string $event
      * @param  string $url
-     * @return mixed
+     * @return Model
      */
     public function create($event, $url)
     {
         $response = $this->client->post('webhooks', ['event' => $event, 'url' => $url]);
 
-        return $response->webhook;
+        return new Model($response->webhook, $this->client);
     }
 }

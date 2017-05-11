@@ -17,7 +17,7 @@ class AgentTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('agents')
+            ->with('agents', [])
             ->once()
             ->andReturn(json_decode('{"agents": [{}]}'));
 

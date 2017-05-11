@@ -10,11 +10,14 @@ class Agent extends Api
     /**
      * List agents.
      *
+     * @link https://www.groovehq.com/docs/agents#listing-agents
+     *
+     * @param  array $params
      * @return \Illuminate\Support\Collection
      */
-    public function list()
+    public function list($params = [])
     {
-        $response = $this->client->get('agents');
+        $response = $this->client->get('agents', $params);
 
         return collect($response->agents)->transform(function ($agent) {
             return new Model($agent, $this->client);
@@ -23,6 +26,8 @@ class Agent extends Api
 
     /**
      * Find agent.
+     *
+     * @link https://www.groovehq.com/docs/agents#finding-one-agent
      *
      * @param  string $email
      * @return Model

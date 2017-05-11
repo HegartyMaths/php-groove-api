@@ -7,6 +7,28 @@ use Illuminate\Contracts\Support\Jsonable;
 abstract class Model implements Jsonable
 {
     /**
+     * @var \stdClass
+     */
+    protected $details;
+
+    /**
+     * @var \Groove\Client
+     */
+    protected $client;
+
+    /**
+     * Agent.
+     *
+     * @param \stdClass $details
+     * @param \Groove\Client $client
+     */
+    public function __construct($details, $client)
+    {
+        $this->details = $details;
+        $this->client = $client;
+    }
+
+    /**
      * To JSON.
      *
      * @param  int $options
@@ -30,7 +52,7 @@ abstract class Model implements Jsonable
     /**
      * Get property.
      *
-     * @param  $key
+     * @param  string $key
      * @return mixed
      */
     public function __get($key)

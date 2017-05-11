@@ -4,8 +4,11 @@ namespace Groove;
 
 use Groove\Api\Agent;
 use Groove\Api\Group;
+use Groove\Api\Folder;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
+use Groove\Api\Message;
+use Groove\Api\Webhook;
 use Groove\Api\Customer;
 use Groove\Api\Attachment;
 use GuzzleHttp\Client as HttpClient;
@@ -15,7 +18,12 @@ class Client
     /**
      * @var string
      */
-    const VERSION = 'v0.3.0';
+    const VERSION = 'v0.4.0';
+
+    /**
+     * @var string
+     */
+    const GROOVE_API_VERSION = 'v1';
 
     /**
      * @var string
@@ -23,7 +31,7 @@ class Client
     private $accessToken;
 
     /**
-     * @var
+     * @var \GuzzleHttp\Client
      */
     private $httpClient;
 
@@ -31,7 +39,7 @@ class Client
      * Groove client.
      *
      * @param string $accessToken
-     * @param $httpClient
+     * @param \GuzzleHttp\Client $httpClient
      */
     public function __construct($accessToken, $httpClient = null)
     {
@@ -47,11 +55,12 @@ class Client
      * Get request.
      *
      * @param  string $endpoint
+     * @param  array $params
      * @return mixed
      */
-    public function get($endpoint)
+    public function get($endpoint, $params = [])
     {
-        $request = $this->httpClient->get($endpoint);
+        $request = $this->httpClient->get($endpoint, ['form_params' => $params]);
 
         return json_decode($request->getBody());
     }
@@ -145,6 +154,36 @@ class Client
     }
 
     /**
+     * Groove folders.
+     *
+     * @return Folder
+     */
+    public function folders()
+    {
+        return new Folder($this);
+    }
+
+    /**
+     * Groove messages.
+     *
+     * @return Message
+     */
+    public function messages()
+    {
+        return new Message($this);
+    }
+
+    /**
+     * Groove webhooks.
+     *
+     * @return Webhook
+     */
+    public function webhooks()
+    {
+        return new Webhook($this);
+    }
+
+    /**
      * Get access token.
      *
      * @return string
@@ -152,16 +191,6 @@ class Client
     public function getAccessToken()
     {
         return $this->accessToken;
-    }
-
-    /**
-     * Set access token.
-     *
-     * @param string $accessToken
-     */
-    public function setAccessToken($accessToken)
-    {
-        $this->accessToken = $accessToken;
     }
 
     /**
@@ -173,7 +202,7 @@ class Client
     private function setupHttpClient($accessToken)
     {
         $this->httpClient = new HttpClient([
-            'base_uri' => 'https://api.groovehq.com/v1/',
+            'base_uri' => 'https://api.groovehq.com/'.self::GROOVE_API_VERSION.'/',
             'headers' => [
                 'Authorization' => "Bearer $accessToken",
             ],

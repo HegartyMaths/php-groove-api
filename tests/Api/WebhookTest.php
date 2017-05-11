@@ -4,6 +4,7 @@ namespace Tests\Api;
 
 use Tests\TestCase;
 use Groove\Api\Webhook;
+use Groove\Models\Webhook as WebhookModel;
 
 class WebhookTest extends TestCase
 {
@@ -17,9 +18,10 @@ class WebhookTest extends TestCase
             ->once()
             ->andReturn(json_decode('{"webhook": {"event": "groove-event", "url": "your-url"}}'));
 
-        $response = (new Webhook($client))->create('groove-event', 'your-url');
+        $webhook = (new Webhook($client))->create('groove-event', 'your-url');
 
-        $this->assertEquals($response->event, 'groove-event');
-        $this->assertEquals($response->url, 'your-url');
+        $this->assertInstanceOf(WebhookModel::class, $webhook);
+        $this->assertEquals($webhook->event, 'groove-event');
+        $this->assertEquals($webhook->url, 'your-url');
     }
 }

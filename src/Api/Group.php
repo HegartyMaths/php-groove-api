@@ -10,7 +10,7 @@ class Group extends Api
     /**
      * List groups.
      *
-     * @return $this
+     * @return \Illuminate\Support\Collection
      */
     public function list()
     {

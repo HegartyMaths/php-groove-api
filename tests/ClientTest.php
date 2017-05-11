@@ -5,8 +5,11 @@ namespace Tests;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Group;
+use Groove\Api\Folder;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
+use Groove\Api\Message;
+use Groove\Api\Webhook;
 use Groove\Api\Customer;
 use Groove\Api\Attachment;
 use GuzzleHttp\HandlerStack;
@@ -16,6 +19,20 @@ use GuzzleHttp\Handler\MockHandler;
 
 class ClientTest extends TestCase
 {
+    protected static $httpClient;
+
+    public static function setUpBeforeClass()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '"a test get response"'),
+            new Response(200, [], '"a test post response"'),
+            new Response(200, [], '"a test put response"'),
+        ]);
+        $handler = HandlerStack::create($mock);
+
+        self::$httpClient = new Guzzle(['handler' => $handler]);
+    }
+
     /** @test */
     public function it_provides_access_to_agents()
     {
@@ -65,6 +82,30 @@ class ClientTest extends TestCase
     }
 
     /** @test */
+    public function it_provides_access_to_folders()
+    {
+        $folders = (new Client('token'))->folders();
+
+        $this->assertInstanceOf(Folder::class, $folders);
+    }
+
+    /** @test */
+    public function it_provides_access_to_messages()
+    {
+        $messages = (new Client('token'))->messages();
+
+        $this->assertInstanceOf(Message::class, $messages);
+    }
+
+    /** @test */
+    public function it_provides_access_to_webhooks()
+    {
+        $webhooks = (new Client('token'))->webhooks();
+
+        $this->assertInstanceOf(Webhook::class, $webhooks);
+    }
+
+    /** @test */
     public function it_can_get_the_access_token()
     {
         $accessToken = (new Client('anAccessToken'))->getAccessToken();
@@ -73,23 +114,9 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_the_access_token()
-    {
-        $client = new Client('originalAccessToken');
-
-        $client->setAccessToken('newAccessToken');
-
-        $this->assertEquals('newAccessToken', $client->getAccessToken());
-    }
-
-    /** @test */
     public function it_can_make_get_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test get response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->get('endpoint');
+        $response = (new Client('token', self::$httpClient))->get('endpoint');
 
         $this->assertEquals('a test get response', $response);
     }
@@ -97,11 +124,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_post_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test post response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->post('endpoint');
+        $response = (new Client('token', self::$httpClient))->post('endpoint');
 
         $this->assertEquals('a test post response', $response);
     }
@@ -109,11 +132,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_put_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test put response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->put('endpoint');
+        $response = (new Client('token', self::$httpClient))->put('endpoint');
 
         $this->assertEquals('a test put response', $response);
     }

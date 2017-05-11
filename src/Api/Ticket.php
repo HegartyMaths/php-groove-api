@@ -28,12 +28,12 @@ class Ticket extends Api
     /**
      * List tickets.
      *
-     * @param  int $page
+     * @param  array $params
      * @return \Illuminate\Support\Collection
      */
-    public function list($page = 1)
+    public function list($params = [])
     {
-        $response = $this->client->get("tickets?page=$page");
+        $response = $this->client->get('tickets', $params);
 
         return collect($response->tickets)->transform(function ($ticket) {
             return new Model($ticket, $this->client);
@@ -43,7 +43,7 @@ class Ticket extends Api
     /**
      * Find ticket.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return Model
      */
     public function find($ticketNumber)
@@ -56,7 +56,7 @@ class Ticket extends Api
     /**
      * Ticket state.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return mixed
      */
     public function ticketState($ticketNumber)
@@ -67,12 +67,26 @@ class Ticket extends Api
     /**
      * Ticket assignee.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return mixed
      */
     public function ticketAssignee($ticketNumber)
     {
         return $this->client->get("tickets/$ticketNumber/assignee");
+    }
+
+    /**
+     * Update a ticket's assignee.
+     *
+     * @param  int|string $ticketNumber
+     * @param  string $email
+     * @return bool
+     */
+    public function updateAssignee($ticketNumber, $email)
+    {
+        $this->client->put("tickets/$ticketNumber/assignee", ['assignee' => $email]);
+
+        return true;
     }
 
     /**
@@ -83,5 +97,33 @@ class Ticket extends Api
     public function count()
     {
         return $this->client->get('tickets/count');
+    }
+
+    /**
+     * Update a ticket's priority.
+     *
+     * @param  int|string $ticketNumber
+     * @param  string $priority
+     * @return bool
+     */
+    public function updatePriority($ticketNumber, $priority)
+    {
+        $this->client->put("tickets/$ticketNumber/priority", ['priority' => $priority]);
+
+        return true;
+    }
+
+    /**
+     * Update a ticket's assigned group.
+     *
+     * @param  int|string $ticketNumber
+     * @param  string $groupID
+     * @return bool
+     */
+    public function updateGroup($ticketNumber, $groupID)
+    {
+        $this->client->put("tickets/$ticketNumber/assigned_group", ['group' => $groupID]);
+
+        return true;
     }
 }

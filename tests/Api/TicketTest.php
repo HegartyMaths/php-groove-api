@@ -20,6 +20,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('post')
+            ->with('tickets', ['body' => self::TICKET_BODY, 'from' => self::TICKET_FROM, 'to' => self::TICKET_TO])
             ->once()
             ->andReturn(json_decode('{"ticket": {"body": "'.self::TICKET_BODY.'"}}'));
 
@@ -35,6 +36,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('tickets', [])
             ->once()
             ->andReturn(json_decode('{"tickets": [{}]}'));
 
@@ -50,6 +52,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('tickets/'.self::TICKET_NUMBER)
             ->once()
             ->andReturn(json_decode('{"ticket": {"number": "'.self::TICKET_NUMBER.'"}}'));
 
@@ -60,11 +63,54 @@ class TicketTest extends TestCase
     }
 
     /** @test */
+    public function it_can_update_a_tickets_assignee()
+    {
+        $client = $this->getMockClient();
+        $client
+            ->shouldReceive('put')
+            ->with('tickets/'.self::TICKET_NUMBER.'/assignee', ['assignee' => 'assignee@email.com'])
+            ->once();
+
+        $updated = (new Ticket($client))->updateAssignee(self::TICKET_NUMBER, 'assignee@email.com');
+
+        $this->assertTrue($updated);
+    }
+
+    /** @test */
+    public function it_can_update_a_tickets_priority()
+    {
+        $client = $this->getMockClient();
+        $client
+            ->shouldReceive('put')
+            ->with('tickets/'.self::TICKET_NUMBER.'/priority', ['priority' => 'urgent'])
+            ->once();
+
+        $updated = (new Ticket($client))->updatePriority(self::TICKET_NUMBER, 'urgent');
+
+        $this->assertTrue($updated);
+    }
+
+    /** @test */
+    public function it_can_update_a_tickets_group()
+    {
+        $client = $this->getMockClient();
+        $client
+            ->shouldReceive('put')
+            ->with('tickets/'.self::TICKET_NUMBER.'/assigned_group', ['group' => 'groupID'])
+            ->once();
+
+        $updated = (new Ticket($client))->updateGroup(self::TICKET_NUMBER, 'groupID');
+
+        $this->assertTrue($updated);
+    }
+
+    /** @test */
     public function it_can_find_a_tickets_state()
     {
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('tickets/'.self::TICKET_NUMBER.'/state')
             ->once()
             ->andReturn('unread');
 
@@ -79,6 +125,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('tickets/'.self::TICKET_NUMBER.'/assignee')
             ->once()
             ->andReturn('test@email.com');
 
@@ -93,6 +140,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('tickets/count')
             ->once()
             ->andReturn('123');
 

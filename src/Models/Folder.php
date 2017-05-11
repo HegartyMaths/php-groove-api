@@ -4,7 +4,7 @@ namespace Groove\Models;
 
 use Groove\Model;
 
-class Customer extends Model
+class Folder extends Model
 {
     //
 }
