@@ -22,7 +22,7 @@ class TicketTest extends TestCase
             ->shouldReceive('post')
             ->with('tickets', ['body' => self::TICKET_BODY, 'from' => self::TICKET_FROM, 'to' => self::TICKET_TO])
             ->once()
-            ->andReturn(json_decode('{"ticket": {"body": "' . self::TICKET_BODY . '"}}'));
+            ->andReturn(json_decode('{"ticket": {"body": "'.self::TICKET_BODY.'"}}'));
 
         $ticket = (new Ticket($client))->create(self::TICKET_BODY, self::TICKET_FROM, self::TICKET_TO);
 
@@ -52,9 +52,9 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('tickets/' . self::TICKET_NUMBER)
+            ->with('tickets/'.self::TICKET_NUMBER)
             ->once()
-            ->andReturn(json_decode('{"ticket": {"number": "' . self::TICKET_NUMBER . '"}}'));
+            ->andReturn(json_decode('{"ticket": {"number": "'.self::TICKET_NUMBER.'"}}'));
 
         $ticket = (new Ticket($client))->find(self::TICKET_NUMBER);
 
@@ -68,7 +68,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('put')
-            ->with('tickets/' . self::TICKET_NUMBER . '/assignee', ['assignee' => 'assignee@email.com'])
+            ->with('tickets/'.self::TICKET_NUMBER.'/assignee', ['assignee' => 'assignee@email.com'])
             ->once();
 
         $updated = (new Ticket($client))->updateAssignee(self::TICKET_NUMBER, 'assignee@email.com');
@@ -82,7 +82,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('put')
-            ->with('tickets/' . self::TICKET_NUMBER . '/priority', ['priority' => 'urgent'])
+            ->with('tickets/'.self::TICKET_NUMBER.'/priority', ['priority' => 'urgent'])
             ->once();
 
         $updated = (new Ticket($client))->updatePriority(self::TICKET_NUMBER, 'urgent');
@@ -96,7 +96,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('put')
-            ->with('tickets/' . self::TICKET_NUMBER . '/assigned_group', ['group' => 'groupID'])
+            ->with('tickets/'.self::TICKET_NUMBER.'/assigned_group', ['group' => 'groupID'])
             ->once();
 
         $updated = (new Ticket($client))->updateGroup(self::TICKET_NUMBER, 'groupID');
@@ -110,7 +110,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('tickets/' . self::TICKET_NUMBER . '/state')
+            ->with('tickets/'.self::TICKET_NUMBER.'/state')
             ->once()
             ->andReturn('unread');
 
@@ -125,7 +125,7 @@ class TicketTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('tickets/' . self::TICKET_NUMBER . '/assignee')
+            ->with('tickets/'.self::TICKET_NUMBER.'/assignee')
             ->once()
             ->andReturn('test@email.com');
 
