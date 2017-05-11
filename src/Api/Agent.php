@@ -10,6 +10,8 @@ class Agent extends Api
     /**
      * List agents.
      *
+     * @link https://www.groovehq.com/docs/agents#listing-agents
+     *
      * @param  array $params
      * @return \Illuminate\Support\Collection
      */
@@ -24,6 +26,8 @@ class Agent extends Api
 
     /**
      * Find agent.
+     *
+     * @link https://www.groovehq.com/docs/agents#finding-one-agent
      *
      * @param  string $email
      * @return Model
