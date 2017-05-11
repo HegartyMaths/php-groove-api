@@ -19,6 +19,20 @@ use GuzzleHttp\Handler\MockHandler;
 
 class ClientTest extends TestCase
 {
+    protected static $httpClient;
+
+    public static function setUpBeforeClass()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '"a test get response"'),
+            new Response(200, [], '"a test post response"'),
+            new Response(200, [], '"a test put response"'),
+        ]);
+        $handler = HandlerStack::create($mock);
+
+        self::$httpClient = new Guzzle(['handler' => $handler]);
+    }
+
     /** @test */
     public function it_provides_access_to_agents()
     {
@@ -102,11 +116,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_get_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test get response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->get('endpoint');
+        $response = (new Client('token', self::$httpClient))->get('endpoint');
 
         $this->assertEquals('a test get response', $response);
     }
@@ -114,11 +124,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_post_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test post response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->post('endpoint');
+        $response = (new Client('token', self::$httpClient))->post('endpoint');
 
         $this->assertEquals('a test post response', $response);
     }
@@ -126,11 +132,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_put_requests()
     {
-        $mock = new MockHandler([new Response(200, [], '"a test put response"')]);
-        $handler = HandlerStack::create($mock);
-        $httpClient = new Guzzle(['handler' => $handler]);
-
-        $response = (new Client('token', $httpClient))->put('endpoint');
+        $response = (new Client('token', self::$httpClient))->put('endpoint');
 
         $this->assertEquals('a test put response', $response);
     }
