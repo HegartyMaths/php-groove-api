@@ -17,6 +17,7 @@ class CustomerTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('customers', [])
             ->once()
             ->andReturn(json_decode('{"customers": [{}]}'));
 
@@ -32,6 +33,7 @@ class CustomerTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
+            ->with('customers/'.self::CUSTOMER_EMAIL)
             ->once()
             ->andReturn(json_decode('{"customer": {"email": "'.self::CUSTOMER_EMAIL.'"}}'));
 
@@ -47,10 +49,11 @@ class CustomerTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('put')
+            ->with('customers/'.self::CUSTOMER_EMAIL, ['email' => 'updated@email.com'])
             ->once()
             ->andReturn(json_decode('{"customer": {"email": "updated@email.com"}}'));
 
-        $customer = (new Customer($client))->update(self::CUSTOMER_EMAIL);
+        $customer = (new Customer($client))->update(self::CUSTOMER_EMAIL,'updated@email.com');
 
         $this->assertInstanceOf(CustomerModel::class, $customer);
         $this->assertEquals('updated@email.com', $customer->email);

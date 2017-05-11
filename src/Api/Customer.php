@@ -10,11 +10,12 @@ class Customer extends Api
     /**
      * List customers.
      *
+     * @param  array $params
      * @return \Illuminate\Support\Collection
      */
-    public function list()
+    public function list($params = [])
     {
-        $response = $this->client->get('customers');
+        $response = $this->client->get('customers', $params);
 
         return collect($response->customers)->transform(function ($customer) {
             return new Model($customer, $this->client);
@@ -37,13 +38,16 @@ class Customer extends Api
     /**
      * Update a customer.
      *
-     * @param  string $email
+     * @param  string $existingEmail
+     * @param  string $updatedEmail
      * @param  array $params
      * @return Model
      */
-    public function update($email, $params = [])
+    public function update($existingEmail, $updatedEmail, $params = [])
     {
-        $response = $this->client->put("customers/$email", $params);
+        $params = array_merge(['email' => $updatedEmail], $params);
+
+        $response = $this->client->put("customers/$existingEmail", $params);
 
         return new Model($response->customer, $this->client);
     }
