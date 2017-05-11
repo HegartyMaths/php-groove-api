@@ -2,6 +2,8 @@
 
 namespace Tests\Api;
 
+use Groove\Models\Folder as FolderModel;
+use Illuminate\Support\Collection;
 use Tests\TestCase;
 use Groove\Api\Folder;
 
@@ -17,8 +19,10 @@ class FolderTest extends TestCase
             ->once()
             ->andReturn(json_decode('{"folders": [{"name": "a folder"}]}'));
 
-        $response = (new Folder($client))->list();
+        $folders = (new Folder($client))->list();
 
-        $this->assertEquals($response[0]->name, 'a folder');
+        $this->assertInstanceOf(Collection::class, $folders);
+        $this->assertInstanceOf(FolderModel::class, $folders[0]);
+        $this->assertEquals($folders[0]->name, 'a folder');
     }
 }
