@@ -2,14 +2,14 @@
 
 namespace Tests;
 
-use Groove\Api\Folder;
-use Groove\Api\Message;
-use Groove\Api\Webhook;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Group;
+use Groove\Api\Folder;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
+use Groove\Api\Message;
+use Groove\Api\Webhook;
 use Groove\Api\Customer;
 use Groove\Api\Attachment;
 use GuzzleHttp\HandlerStack;

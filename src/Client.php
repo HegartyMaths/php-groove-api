@@ -3,14 +3,14 @@
 namespace Groove;
 
 use Groove\Api\Agent;
-use Groove\Api\Folder;
 use Groove\Api\Group;
-use Groove\Api\Message;
+use Groove\Api\Folder;
 use Groove\Api\Ticket;
 use Groove\Api\Mailbox;
+use Groove\Api\Message;
+use Groove\Api\Webhook;
 use Groove\Api\Customer;
 use Groove\Api\Attachment;
-use Groove\Api\Webhook;
 use GuzzleHttp\Client as HttpClient;
 
 class Client
@@ -212,7 +212,7 @@ class Client
     private function setupHttpClient($accessToken)
     {
         $this->httpClient = new HttpClient([
-            'base_uri' => 'https://api.groovehq.com/' . self::GROOVE_API_VERSION . '/',
+            'base_uri' => 'https://api.groovehq.com/'.self::GROOVE_API_VERSION.'/',
             'headers' => [
                 'Authorization' => "Bearer $accessToken",
             ],
