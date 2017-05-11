@@ -2,9 +2,9 @@
 
 namespace Tests\Api;
 
-use Groove\Models\Webhook as WebhookModel;
 use Tests\TestCase;
 use Groove\Api\Webhook;
+use Groove\Models\Webhook as WebhookModel;
 
 class WebhookTest extends TestCase
 {

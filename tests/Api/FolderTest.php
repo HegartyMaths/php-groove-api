@@ -2,10 +2,10 @@
 
 namespace Tests\Api;
 
-use Groove\Models\Folder as FolderModel;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 use Groove\Api\Folder;
+use Illuminate\Support\Collection;
+use Groove\Models\Folder as FolderModel;
 
 class FolderTest extends TestCase
 {
