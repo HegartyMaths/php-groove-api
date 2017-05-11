@@ -18,7 +18,7 @@ class Client
     /**
      * @var string
      */
-    const VERSION = 'v0.3.0';
+    const VERSION = 'v0.4.0';
 
     /**
      * @var string
