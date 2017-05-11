@@ -2,6 +2,9 @@
 
 namespace Tests;
 
+use Groove\Api\Folder;
+use Groove\Api\Message;
+use Groove\Api\Webhook;
 use Groove\Client;
 use Groove\Api\Agent;
 use Groove\Api\Group;
@@ -62,6 +65,30 @@ class ClientTest extends TestCase
         $groups = (new Client('token'))->groups();
 
         $this->assertInstanceOf(Group::class, $groups);
+    }
+
+    /** @test */
+    public function it_provides_access_to_folders()
+    {
+        $folders = (new Client('token'))->folders();
+
+        $this->assertInstanceOf(Folder::class, $folders);
+    }
+
+    /** @test */
+    public function it_provides_access_to_messages()
+    {
+        $messages = (new Client('token'))->messages();
+
+        $this->assertInstanceOf(Message::class, $messages);
+    }
+
+    /** @test */
+    public function it_provides_access_to_webhooks()
+    {
+        $webhooks = (new Client('token'))->webhooks();
+
+        $this->assertInstanceOf(Webhook::class, $webhooks);
     }
 
     /** @test */
