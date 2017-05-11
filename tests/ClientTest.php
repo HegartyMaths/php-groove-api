@@ -100,16 +100,6 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_the_access_token()
-    {
-        $client = new Client('originalAccessToken');
-
-        $client->setAccessToken('newAccessToken');
-
-        $this->assertEquals('newAccessToken', $client->getAccessToken());
-    }
-
-    /** @test */
     public function it_can_make_get_requests()
     {
         $mock = new MockHandler([new Response(200, [], '"a test get response"')]);

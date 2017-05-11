@@ -194,16 +194,6 @@ class Client
     }
 
     /**
-     * Set access token.
-     *
-     * @param string $accessToken
-     */
-    public function setAccessToken($accessToken)
-    {
-        $this->accessToken = $accessToken;
-    }
-
-    /**
      * Set up the HTTP client.
      *
      * @param  string $accessToken
