@@ -10,11 +10,12 @@ class Agent extends Api
     /**
      * List agents.
      *
+     * @param  array $params
      * @return \Illuminate\Support\Collection
      */
-    public function list()
+    public function list($params = [])
     {
-        $response = $this->client->get('agents');
+        $response = $this->client->get('agents', $params);
 
         return collect($response->agents)->transform(function ($agent) {
             return new Model($agent, $this->client);

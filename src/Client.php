@@ -47,11 +47,12 @@ class Client
      * Get request.
      *
      * @param  string $endpoint
+     * @param  array $params
      * @return mixed
      */
-    public function get($endpoint)
+    public function get($endpoint, $params = [])
     {
-        $request = $this->httpClient->get($endpoint);
+        $request = $this->httpClient->get($endpoint, ['form_params' => $params]);
 
         return json_decode($request->getBody());
     }

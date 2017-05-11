@@ -17,7 +17,7 @@ class AgentTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('agents')
+            ->with('agents', [])
             ->once()
             ->andReturn(json_decode('{"agents": [{}]}'));
 
@@ -33,9 +33,9 @@ class AgentTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('agents/'.self::AGENT_EMAIL)
+            ->with('agents/' . self::AGENT_EMAIL)
             ->once()
-            ->andReturn(json_decode('{"agent": {"email" : "'.self::AGENT_EMAIL.'"}}'));
+            ->andReturn(json_decode('{"agent": {"email" : "' . self::AGENT_EMAIL . '"}}'));
 
         $agent = (new Agent($client))->find(self::AGENT_EMAIL);
 
