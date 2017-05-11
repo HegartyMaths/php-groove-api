@@ -10,7 +10,7 @@ class Customer extends Api
     /**
      * List customers.
      *
-     * @return mixed
+     * @return \Illuminate\Support\Collection
      */
     public function list()
     {
@@ -37,7 +37,7 @@ class Customer extends Api
     /**
      * Update a customer.
      *
-     * @param  $email
+     * @param  string $email
      * @param  array $params
      * @return Model
      */

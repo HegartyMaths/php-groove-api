@@ -23,7 +23,7 @@ class Client
     private $accessToken;
 
     /**
-     * @var
+     * @var \GuzzleHttp\Client
      */
     private $httpClient;
 
@@ -31,7 +31,7 @@ class Client
      * Groove client.
      *
      * @param string $accessToken
-     * @param $httpClient
+     * @param \GuzzleHttp\Client $httpClient
      */
     public function __construct($accessToken, $httpClient = null)
     {

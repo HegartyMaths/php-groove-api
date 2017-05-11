@@ -7,7 +7,7 @@ use Illuminate\Contracts\Support\Jsonable;
 abstract class Model implements Jsonable
 {
     /**
-     * @var
+     * @var \stdClass
      */
     protected $details;
 
@@ -19,7 +19,7 @@ abstract class Model implements Jsonable
     /**
      * Agent.
      *
-     * @param $details
+     * @param \stdClass $details
      * @param \Groove\Client $client
      */
     public function __construct($details, $client)
@@ -52,7 +52,7 @@ abstract class Model implements Jsonable
     /**
      * Get property.
      *
-     * @param  $key
+     * @param  string $key
      * @return mixed
      */
     public function __get($key)

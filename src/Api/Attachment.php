@@ -10,7 +10,7 @@ class Attachment extends Api
     /**
      * List attachments.
      *
-     * @return $this
+     * @return \Illuminate\Support\Collection
      */
     public function list()
     {

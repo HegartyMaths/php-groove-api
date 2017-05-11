@@ -43,7 +43,7 @@ class Ticket extends Api
     /**
      * Find ticket.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return Model
      */
     public function find($ticketNumber)
@@ -56,7 +56,7 @@ class Ticket extends Api
     /**
      * Ticket state.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return mixed
      */
     public function ticketState($ticketNumber)
@@ -67,7 +67,7 @@ class Ticket extends Api
     /**
      * Ticket assignee.
      *
-     * @param  $ticketNumber
+     * @param  int|string $ticketNumber
      * @return mixed
      */
     public function ticketAssignee($ticketNumber)
