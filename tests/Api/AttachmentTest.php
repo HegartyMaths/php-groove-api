@@ -15,11 +15,11 @@ class AttachmentTest extends TestCase
         $client = $this->getMockClient();
         $client
             ->shouldReceive('get')
-            ->with('attachments')
+            ->with('attachments', ['message' => 'messageID'])
             ->once()
             ->andReturn(json_decode('{"attachments": [{}]}'));
 
-        $attachments = (new Attachment($client))->list();
+        $attachments = (new Attachment($client))->list('messageID');
 
         $this->assertInstanceOf(Collection::class, $attachments);
         $this->assertInstanceOf(AttachmentModel::class, $attachments[0]);
