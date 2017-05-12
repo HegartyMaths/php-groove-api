@@ -202,7 +202,7 @@ class Client
     private function setupHttpClient($accessToken)
     {
         $this->httpClient = new HttpClient([
-            'base_uri' => 'https://api.groovehq.com/' . self::GROOVE_API_VERSION . '/',
+            'base_uri' => 'https://api.groovehq.com/'.self::GROOVE_API_VERSION.'/',
             'headers' => [
                 'Authorization' => "Bearer $accessToken",
             ],
