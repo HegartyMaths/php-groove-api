@@ -34,5 +34,13 @@ $tickets = $client->tickets()->list();
 ```
 
 ## Docs
+ - [Agents](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Agents.md)
+ - [Attachments](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Attachments.md)
+ - [Customers](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Customers.md)
+ - [Folders](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Folders.md)
+ - [Groups](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Groups.md)
+ - [Mailboxes](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Mailboxes.md)
+ - [Messages](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Messages.md)
  - [Tickets](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Tickets.md)
+ - [Webhooks](https://github.com/HegartyMaths/php-groove-api/blob/master/docs/Webhooks.md)
  
