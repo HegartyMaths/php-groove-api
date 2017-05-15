@@ -6,8 +6,8 @@ use Mockery;
 use Groove\Client;
 use Tests\TestCase;
 use Groove\Models\Ticket;
-use Groove\Models\Customer as CustomerModel;
 use Illuminate\Support\Collection;
+use Groove\Models\Customer as CustomerModel;
 
 class TicketTest extends TestCase
 {
