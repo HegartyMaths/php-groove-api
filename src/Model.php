@@ -2,9 +2,9 @@
 
 namespace Groove;
 
-use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
 
-abstract class Model implements Jsonable
+abstract class Model implements JsonSerializable
 {
     /**
      * @var \stdClass
@@ -29,14 +29,13 @@ abstract class Model implements Jsonable
     }
 
     /**
-     * To JSON.
+     * Serialize json.
      *
-     * @param  int $options
-     * @return string
+     * @return \stdClass
      */
-    public function toJson($options = 0)
+    public function jsonSerialize()
     {
-        return json_encode($this->details);
+        return $this->details;
     }
 
     /**
