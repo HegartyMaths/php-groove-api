@@ -22,7 +22,7 @@ class Ticket extends Model
     /**
      * Ticket customer.
      *
-     * @return Customer
+     * @return \Groove\Models\Customer
      */
     public function customer()
     {
