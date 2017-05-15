@@ -17,7 +17,7 @@ abstract class Model implements JsonSerializable
     protected $client;
 
     /**
-     * Agent.
+     * Model.
      *
      * @param \stdClass $details
      * @param \Groove\Client $client
