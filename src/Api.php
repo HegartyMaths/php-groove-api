@@ -10,7 +10,7 @@ abstract class Api
     protected $client;
 
     /**
-     * ApiAbstract constructor.
+     * Api.
      *
      * @param \Groove\Client $client
      */
