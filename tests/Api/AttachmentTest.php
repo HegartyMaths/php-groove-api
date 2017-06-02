@@ -12,14 +12,13 @@ class AttachmentTest extends TestCase
     /** @test */
     public function it_can_list_attachments()
     {
-        $client = $this->getMockClient();
-        $client
+        $this->mockedClient
             ->shouldReceive('get')
             ->with('attachments', ['message' => 'messageID'])
             ->once()
             ->andReturn(json_decode('{"attachments": [{}]}'));
 
-        $attachments = (new Attachment($client))->list('messageID');
+        $attachments = (new Attachment($this->mockedClient))->list('messageID');
 
         $this->assertInstanceOf(Collection::class, $attachments);
         $this->assertInstanceOf(AttachmentModel::class, $attachments[0]);

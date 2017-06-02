@@ -14,14 +14,13 @@ class AgentTest extends TestCase
     /** @test */
     public function it_can_find_a_list_of_agents()
     {
-        $client = $this->getMockClient();
-        $client
+        $this->mockedClient
             ->shouldReceive('get')
             ->with('agents', [])
             ->once()
             ->andReturn(json_decode('{"agents": [{}]}'));
 
-        $agents = (new Agent($client))->list();
+        $agents = (new Agent($this->mockedClient))->list();
 
         $this->assertInstanceOf(Collection::class, $agents);
         $this->assertInstanceOf(AgentModel::class, $agents[0]);
@@ -30,14 +29,13 @@ class AgentTest extends TestCase
     /** @test */
     public function it_can_find_an_agent()
     {
-        $client = $this->getMockClient();
-        $client
+        $this->mockedClient
             ->shouldReceive('get')
             ->with('agents/'.self::AGENT_EMAIL)
             ->once()
             ->andReturn(json_decode('{"agent": {"email" : "'.self::AGENT_EMAIL.'"}}'));
 
-        $agent = (new Agent($client))->find(self::AGENT_EMAIL);
+        $agent = (new Agent($this->mockedClient))->find(self::AGENT_EMAIL);
 
         $this->assertInstanceOf(AgentModel::class, $agent);
         $this->assertEquals(self::AGENT_EMAIL, $agent->email);

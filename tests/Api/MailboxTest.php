@@ -12,14 +12,13 @@ class MailboxTest extends TestCase
     /** @test */
     public function it_can_list_mailboxes()
     {
-        $client = $this->getMockClient();
-        $client
+        $this->mockedClient
             ->shouldReceive('get')
             ->with('mailboxes')
             ->once()
             ->andReturn(json_decode('{"mailboxes": [{}]}'));
 
-        $agents = (new Mailbox($client))->list();
+        $agents = (new Mailbox($this->mockedClient))->list();
 
         $this->assertInstanceOf(Collection::class, $agents);
         $this->assertInstanceOf(MailboxModel::class, $agents[0]);
