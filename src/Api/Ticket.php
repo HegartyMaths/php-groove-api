@@ -63,7 +63,21 @@ class Ticket extends Api
     {
         return $this->client->get("tickets/$ticketNumber/state");
     }
+    
+    /**
+     * Update a ticket's State.
+     *
+     * @param  int|string $ticketNumber
+     * @param  string $state // "unread", "opened", "pending", "closed","spam"
+     * @return mixed
+     */
+    public function updateState($ticketNumber, $state)
+    {
+        $this->client->put("tickets/$ticketNumber/state", ['state' => $state]);
 
+        return true;
+    }
+    
     /**
      * Ticket assignee.
      *
