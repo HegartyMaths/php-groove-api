@@ -113,6 +113,19 @@ class TicketTest extends TestCase
     }
 
     /** @test */
+    public function it_can_update_a_tickets_state()
+    {
+        $this->mockedClient
+            ->shouldReceive('put')
+            ->with('tickets/'.self::TICKET_NUMBER.'/state', ['state' => 'spam'])
+            ->once();
+
+        $updated = (new Ticket($this->mockedClient))->updateState(self::TICKET_NUMBER, 'spam');
+
+        $this->assertTrue($updated);
+    }
+
+    /** @test */
     public function it_can_find_a_tickets_assignee()
     {
         $this->mockedClient
