@@ -68,8 +68,8 @@ class Ticket extends Api
      * Update a ticket's State.
      *
      * @param  int|string $ticketNumber
-     * @param  string $state // "unread", "opened", "pending", "closed","spam"
-     * @return mixed
+     * @param  string $state // "unread", "opened", "pending", "closed", "spam"
+     * @return bool
      */
     public function updateState($ticketNumber, $state)
     {
