@@ -63,7 +63,7 @@ class Ticket extends Api
     {
         return $this->client->get("tickets/$ticketNumber/state");
     }
-    
+
     /**
      * Update a ticket's State.
      *
@@ -77,7 +77,7 @@ class Ticket extends Api
 
         return true;
     }
-    
+
     /**
      * Ticket assignee.
      *
