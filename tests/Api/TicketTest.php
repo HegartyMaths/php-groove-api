@@ -45,6 +45,20 @@ class TicketTest extends TestCase
     }
 
     /** @test */
+    public function it_can_get_meta_of_tickets()
+    {
+        $this->mockedClient
+            ->shouldReceive('get')
+            ->with('tickets', [])
+            ->once()
+            ->andReturn(json_decode('{"tickets": [{}], "meta": {"current_page": 1, "total_pages": 2, "total_count": 30, "next_page": "http://api.groovehq.dev/v1/tickets?page=2"}}'));
+
+        $meta = (new Ticket($this->mockedClient))->meta();
+
+        $this->assertInstanceOf('stdClass', $meta);
+    }
+
+    /** @test */
     public function it_can_find_a_ticket()
     {
         $this->mockedClient

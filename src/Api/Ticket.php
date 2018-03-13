@@ -41,6 +41,19 @@ class Ticket extends Api
     }
 
     /**
+     * Get tickets meta.
+     *
+     * @param  array $params
+     * @return \stdClass
+     */
+    public function meta($params = [])
+    {
+        $response = $this->client->get('tickets', $params);
+
+        return $response->meta;
+    }
+
+    /**
      * Find ticket.
      *
      * @param  int|string $ticketNumber
